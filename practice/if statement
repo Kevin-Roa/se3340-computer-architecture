@@ -1,0 +1,17 @@
+.data
+	a:	.word	4
+.text
+main:
+	#load a iinto $t1
+	lw 	$t1,a
+	
+	#if a > 0, jump to else, if a < 0 run inner code
+	bgt 	$t1, $0, else
+	sub	$t1, $0, $t1
+	sw	$t1, a
+	
+else:
+	
+exit:
+	li	$v0, 10
+	syscall

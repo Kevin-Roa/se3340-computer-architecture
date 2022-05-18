@@ -1,0 +1,3 @@
+This is a sample file that demonstrates the downside to RLE compression.
+If there are few repeated characters then the RLE compression will actually
+increase the overall file size.

@@ -1,0 +1,20 @@
+# practice program 6
+# while (s2[i] = s1[i] != '/0') i++; 
+	.data
+s1:	.asciiz	"hi"
+	.align	2
+s2:	.space	4
+
+	.text
+main:	la	$t1, s1		#$t1 = s1[]
+	la	$t2, s2		#$t2 = s2[]
+	
+loop:	lbu	$t3, ($t1)	#$t3 = s1[i]s
+	sb	$t3, ($t2)	#s2[i] = $t3
+	beq	$t3, $0, exit	#exit if at end of string
+	addi	$t1, $t1, 1	#next char
+	addi	$t2, $t2, 1	#next char
+	j	loop
+
+exit:	li	$v0, 10
+	syscall

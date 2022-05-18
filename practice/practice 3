@@ -1,0 +1,19 @@
+.data
+a:	.word	5
+b:	.word	2
+c:	.word	0
+
+.text
+main:	#if (a <= b) c = b else c = a  
+	lw	$t1, a
+	lw	$t2, b
+	
+	bgt	$t1, $t2, else
+	sw	$t2, c
+	j	exit
+	
+else:	sw	$t1, c
+	
+exit:	# Terminate Program
+	li	$v0, 10
+	syscall

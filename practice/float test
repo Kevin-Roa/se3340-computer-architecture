@@ -1,0 +1,28 @@
+.data
+x:	.float 3.8
+y:	.float 4.2
+
+avg:	.float 0
+
+.text 
+	# Load x and y into cocroc floats single precision
+	# Can also use lwc1 to load value
+	l.s	$f1, x
+	l.s	$f3, y
+	
+	# Create 2 as float
+	li	$t1, 2		# Load 2 into $t1
+	mtc1	$t1, $f5	# Move it to coproc 1
+	cvt.s.w $f5, $f5	# Convert to float value
+	
+	# Add x and y and divide by 2
+	add.s	$f0, $f1, $f3
+	div.s	$f0, $f0, $f5
+	
+	#store in avg label
+	swc1	$f0, avg
+	
+	#get value from avg and print it in console
+	l.s	$f12, avg
+	li	$v0, 2
+	syscall

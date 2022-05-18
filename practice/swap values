@@ -1,0 +1,13 @@
+.data
+a:	.word 4
+b:	.word 5
+
+.text
+	# Swap values of a and b
+	lw	$t1, a
+	lw	$t2, b
+	sw 	$t1, b
+	sw	$t2, a
+	
+	li $v0, 10 
+	syscall 

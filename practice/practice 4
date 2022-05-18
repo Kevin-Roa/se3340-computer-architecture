@@ -1,0 +1,24 @@
+# practice program 4
+# for (i=0; i<10; i++) c +=5;  # use immediate load/add instructions
+
+	.data
+c:	.word	0
+
+	.text
+main:	
+	lw	$t0, c
+	
+	
+	li	$t1, 0		#$t1 = i
+	li	$t2, 10		#$t2 = i < 10 (stop condition)
+loop:	bge	$t1, $t2,  done
+	addi	$t0, $t0, 5	#c += 5
+	addi	$t1, $t1, 1	#i += 1
+	j 	loop
+
+done:	sw	$t0, c
+
+exit:	li	$v0, 10
+	syscall
+
+

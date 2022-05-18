@@ -1,0 +1,24 @@
+# practice program 5
+# for (i=0; i<10; i++) a[i] +=5; 
+	.data
+a:	.word	5, 9, 2, 1, 4, 6, 3, 9, 2, 1
+len:	.word	10
+
+	.text
+main:	
+
+	la	$t0, a		#get address of a array
+	li 	$t1, 0		#$t1 = i = 0
+	lw	$t2, len	#$t2 = length
+loop:	beq	$t1, $t2, exit
+	lw	$t3, ($t0)	#$t3 = a[i]
+	addi	$t3, $t3, 5	#add 5 to element
+	sw	$t3, ($t0)	#store element back into array
+	addi	$t0, $t0, 4	#point to next element
+	addi	$t1, $t1, 1	#i++
+	j	loop
+
+
+
+exit:	li	$v0, 10
+	syscall

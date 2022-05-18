@@ -1,0 +1,19 @@
+.data 
+var1:	.word 	4
+var2:	.word	8
+var3:	.word 	5
+result:	.word	9
+
+.text
+	lw	$t1, var1
+	lw	$t2, var2
+	lw	$t3, var3
+	
+	# result = (var2 - var1) + (var3 - var1)
+	sub 	$t4, $t2, $t1
+	sub	$t5, $t3, $t1
+	add 	$t6, $t4, $t5
+	sw	$t6, result
+	
+	li $v0, 10 
+	syscall 
